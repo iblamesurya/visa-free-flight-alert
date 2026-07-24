@@ -579,6 +579,17 @@ body {
   color: #ffffff;
 }
 
+.btn-mmt {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-mmt:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
 /* Deploy Guide */
 .deploy-guide-card {
   background: var(--bg-card);

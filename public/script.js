@@ -161,11 +161,14 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div class="card-actions">
-            <a href="${item.bookingLinks.googleFlightsUrl}" target="_blank" class="btn-book btn-gf">
+            <a href="${item.bookingLinks.googleFlightsUrl}" target="_blank" rel="noopener noreferrer" class="btn-book btn-gf">
               ✈️ Google Flights
             </a>
-            <a href="${item.bookingLinks.skyscannerUrl}" target="_blank" class="btn-book btn-sky">
+            <a href="${item.bookingLinks.skyscannerUrl}" target="_blank" rel="noopener noreferrer" class="btn-book btn-sky">
               🔍 Skyscanner
+            </a>
+            <a href="${item.bookingLinks.makeMyTripUrl}" target="_blank" rel="noopener noreferrer" class="btn-book btn-mmt">
+              🧳 MakeMyTrip
             </a>
           </div>
         </div>
