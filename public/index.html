@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visa-Free Flight Alert & Price Tracker | Under ₹10k-15k</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="glow-bg"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="navbar">
+      <div class="logo">
+        <span class="logo-icon">✈️</span>
+        <div>
+          <h1>VisaFree Flights</h1>
+          <span class="tagline">Indian Passport Round-Trip Price Alert Engine</span>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="status-badge vercel-badge">
+          <i data-lucide="triangle" class="icon-sm"></i> Vercel Deploy Ready
+        </span>
+        <span class="status-badge cron-badge">
+          <i data-lucide="clock" class="icon-sm"></i> Daily Cron Active
+        </span>
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h2>Never Miss Cheap Flights to <span class="text-gradient">Visa-Free Countries</span></h2>
+        <p>Monitors round-trip flights under <strong>₹10,000</strong> & <strong>₹15,000</strong> and automatically mails your inbox!</p>
+      </div>
+
+      <!-- Control Bar -->
+      <div class="controls-card">
+        <div class="control-group">
+          <label><i data-lucide="plane-departure"></i> Origin City</label>
+          <select id="originSelect">
+            <option value="DEL" selected>Delhi (DEL)</option>
+            <option value="BOM">Mumbai (BOM)</option>
+            <option value="BLR">Bengaluru (BLR)</option>
+            <option value="HYD">Hyderabad (HYD)</option>
+            <option value="MAA">Chennai (MAA)</option>
+            <option value="CCU">Kolkata (CCU)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label><i data-lucide="dollar-sign"></i> Max Round-Trip Budget</label>
+          <div class="budget-options">
+            <button class="budget-btn active" data-budget="10000">₹10,000 🔥</button>
+            <button class="budget-btn" data-budget="15000">₹15,000 ⚡</button>
+            <button class="budget-btn" data-budget="25000">All Deals</button>
+          </div>
+        </div>
+
+        <div class="control-group action-group">
+          <button id="scanBtn" class="btn btn-primary">
+            <i data-lucide="refresh-cw"></i> Scan Prices Now
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Email Setup Card -->
+    <section class="email-card">
+      <div class="email-card-header">
+        <div>
+          <h3><i data-lucide="mail"></i> Email Notification Settings</h3>
+          <p>Deploy to Vercel and get instant email alerts when flight deals drop below your target price.</p>
+        </div>
+      </div>
+
+      <div class="email-input-row">
+        <div class="input-wrapper">
+          <i data-lucide="at-sign"></i>
+          <input type="email" id="emailInput" placeholder="Enter your email (e.g. user@gmail.com)">
+        </div>
+        <button id="testEmailBtn" class="btn btn-secondary">
+          <i data-lucide="send"></i> Send Test Email Alert
+        </button>
+      </div>
+      <div id="emailStatus" class="email-status-msg"></div>
+    </section>
+
+    <!-- Stats & Filters Bar -->
+    <section class="filter-section">
+      <div class="stats-pills">
+        <div class="pill">
+          <span id="totalDestCount" class="pill-val">12</span>
+          <span class="pill-lbl">Countries Scanned</span>
+        </div>
+        <div class="pill highlight-pill-10k">
+          <span id="deals10kCount" class="pill-val">0</span>
+          <span class="pill-lbl">Under ₹10,000</span>
+        </div>
+        <div class="pill highlight-pill-15k">
+          <span id="deals15kCount" class="pill-val">0</span>
+          <span class="pill-lbl">Under ₹15,000</span>
+        </div>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All Visa-Free</button>
+        <button class="filter-tab" data-filter="10k">Under ₹10,000 Only 🔥</button>
+        <button class="filter-tab" data-filter="15k">Under ₹15,000 Only ⚡</button>
+      </div>
+    </section>
+
+    <!-- Flight Grid -->
+    <section id="flightsGrid" class="flights-grid">
+      <!-- Dynamically populated flight cards -->
+      <div class="loading-spinner">
+        <i data-lucide="loader-2" class="spin"></i> Scanning visa-free flight prices...
+      </div>
+    </section>
+
+    <!-- Vercel Deployment Instructions Modal / Footer -->
+    <section class="deploy-guide-card">
+      <h3><i data-lucide="rocket"></i> How to Deploy to Vercel (1-Click Setup)</h3>
+      <div class="steps-grid">
+        <div class="step-item">
+          <span class="step-num">1</span>
+          <h4>Push to GitHub</h4>
+          <p>Upload this repository to your GitHub account.</p>
+        </div>
+        <div class="step-item">
+          <span class="step-num">2</span>
+          <h4>Import to Vercel</h4>
+          <p>Go to <a href="https://vercel.com/new" target="_blank">Vercel.com/new</a> and select your repo.</p>
+        </div>
+        <div class="step-item">
+          <span class="step-num">3</span>
+          <h4>Add Environment Variables</h4>
+          <p>Set <code>RECIPIENT_EMAIL</code> and <code>RESEND_API_KEY</code> (free at resend.com).</p>
+        </div>
+        <div class="step-item">
+          <span class="step-num">4</span>
+          <h4>Done! Automated Email Alerts</h4>
+          <p>Vercel Cron runs daily and mails you automatically whenever round trips drop under ₹10k-15k.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
